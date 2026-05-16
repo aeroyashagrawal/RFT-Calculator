@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RFT Calculator</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        }
+
+        .card {
+            background: #111827;
+            padding: 30px;
+            border-radius: 18px;
+            width: 360px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            color: #e5e7eb;
+        }
+
+        h1 {
+            color: #22d3ee;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-size: 14px;
+            color: #9ca3af;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 10px;
+            border: 1px solid #374151;
+            background: #1f2937;
+            color: white;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #06b6d4, #3b82f6);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .result-box {
+            margin-top: 25px;
+        }
+
+        .result-label {
+            font-size: 16px;
+            color: #9ca3af;
+        }
+
+        .result-value {
+            font-size: 48px;
+            font-weight: bold;
+            color: #22d3ee;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #6b7280;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>RFT Calculator</h1>
+
+    <label>Total Procedures (A)</label>
+    <input type="number" id="total">
+
+    <label>Errors (B)</label>
+    <input type="number" id="errors">
+
+    <button onclick="calculateRFT()">Calculate RFT</button>
+
+    <div class="result-box">
+        <div class="result-label">RFT</div>
+        <div class="result-value" id="result">--</div>
+    </div>
+
+    <div class="footer">By Yash Agrawal</div>
+</div>
+
+<script>
+function calculateRFT() {
+    let A = parseFloat(document.getElementById("total").value);
+    let B = parseFloat(document.getElementById("errors").value);
+
+    if (!A || A <= 0) {
+        alert("Enter valid total procedures");
+        return;
+    }
+
+    if (B > A) {
+        alert("Errors cannot exceed total");
+        return;
+    }
+
+    let rft = ((A - B) / A) * 100;
+    document.getElementById("result").innerHTML = rft.toFixed(2) + "%";
+}
+</script>
+
+</body>
+</html>
